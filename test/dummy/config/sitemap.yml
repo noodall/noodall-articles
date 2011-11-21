@@ -1,0 +1,6 @@
+home:
+  title: Home
+  type: Home
+news:
+  title: The News
+  type: ArticleList
