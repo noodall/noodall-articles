@@ -36,49 +36,7 @@ Then /^I should be able use it to view articles to by specific month or year$/ d
   page.should have_css("ul#articles li", count: 1)
 end
 
-Given /^there are many news articles assigned to Sectors$/ do
-  @news_page = ArticleList.find_by_permalink('news')
-  ChambersOfCommerce::SECTORS.each do |sector|
-    3.times do
-      Factory :article, parent: @news_page, sectors: sector
-    end
-  end
-end
-
-Then /^I should see a list of Sector within the sidebar$/ do
-  page.should have_css("ul#sectors-list")
-end
-
-Then /^when I choose a Sector$/ do
-  click_link "Manufacturing"
-end
-
-Then /^I should see only articles assigned to the Sector$/ do
-  page.should have_css("ul#articles li", count: 3)
-end
-
-Given /^there are many news articles assigned to Regions$/ do
-  @news_page = ArticleList.find_by_permalink('news')
-  ChambersOfCommerce::REGIONS.each do |region|
-    3.times do
-      Factory :article, parent: @news_page, regions: region
-    end
-  end
-end
-
-Then /^I should see a list of Region within the sidebar$/ do
-  page.should have_css("ul#regions-list a", count: 4)
-end
-
-Then /^when I choose a Region$/ do
-  click_link "Bristol"
-end
-
-Then /^I should see only articles assigned to the Region$/ do
-  page.should have_css("ul#articles li", count: 3)
-end
-
-Given /^there are many news articles assigned to Categorys$/ do
+Given /^there are many news articles assigned to Categories$/ do
   @news_page = ArticleList.find_by_permalink('news')
   ["Stuff", "Things", "Foo", "Bar"].each do |category|
     3.times do
@@ -87,7 +45,7 @@ Given /^there are many news articles assigned to Categorys$/ do
   end
 end
 
-Then /^I should see a list of Category within the sidebar$/ do
+Then /^I should see a list of Categories within the sidebar$/ do
   page.should have_css("ul#categories-list a", count: 4)
 end
 
@@ -101,15 +59,6 @@ end
 
 Then /^I should see the (\d+) most recent articles in the sidebar$/ do |number_of_articles|
   page.should have_css("ol#latest-article-list li a", count: number_of_articles)
-end
-
-When /^I have selected some filters$/ do
-  click_link "Construction"
-end
-
-Then /^the recent articles should reflect the filters$/ do
-  # TODO: Not really good enough, add better check for actual filter
-  page.should have_css("ul#articles li", count: 3)
 end
 
 When /^I view an article$/ do
@@ -127,37 +76,10 @@ Then /^the relation should be based on keywords$/ do
   @related_article.tags.should include("Foo")
 end
 
-Given /^there are many news articles assigned to Sectors, categories and Regions$/ do
-  @news_page = ArticleList.find_by_permalink('news')
-  Factory :article, parent: @news_page, sectors: "Construction", regions: "Bristol"
-  Factory :article, parent: @news_page, sectors: "Construction", regions: "Bath"
-  Factory :article, parent: @news_page, sectors: "Construction", regions: "Swindon"
-  Factory :article, parent: @news_page, sectors: "Education", regions: "Bristol"
-end
-
-When /^choose a filter$/ do
-  click_link "Construction"
-end
-
-When /^then choose another filter$/ do
-  click_link "Bristol"
-end
-
-Then /^both filters should be applied to the list$/ do
-  page.should have_css("ul#articles li", count: 1)
-  # TODO: Check the actual links text to include region=?&sector=?
-end
-
 Then /^I should be able to subscribe to an RSS feed$/ do
   visit "/news"
   click_link "RSS"
   page.should have_css("item", count: 4)
-end
-
-When /^I have select some filters$/ do
-  visit "/news"
-  click_link "Construction"
-  click_link "Bristol"
 end
 
 Then /^the RSS feed should reflect the filters$/ do

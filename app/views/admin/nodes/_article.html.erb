@@ -5,16 +5,6 @@
 
 <%= javascript_include_tag('admin/categories') %>
 
-<p>
-  <%= f.label :sectors, 'Sectors' %><br/>
-  <span class="input-wrap"><%= f.select :sectors, options_for_select(ChambersOfCommerce::SECTORS, @node.sectors), :include_blank => true %></span>
-</p>
-
-<p>
-  <%= f.label :regions, 'Regions' %><br/>
-  <span class="input-wrap"><%= f.select :regions, options_for_select(ChambersOfCommerce::REGIONS, @node.regions), :include_blank => true %></span>
-</p>
-
 <%= render :partial => 'noodall/admin/nodes/body', :locals => { :f => f }  %>
 <% content_for :component_table do %>
 <!--

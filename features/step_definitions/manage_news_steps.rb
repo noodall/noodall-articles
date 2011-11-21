@@ -41,20 +41,6 @@ Then /^I should be able to assign the article to multiple new or existing catego
   @article.categories.should include("Stuff")
 end
 
-Then /^I should be able to choose a Sector that the article relates to$/ do
-  select "Manufacturing", from: "Sectors"
-  click_button "Publish"
-  @article.reload
-  @article.sectors.should include("Manufacturing")
-end
-
-Then /^I should assign the article as relevant to all Sectors$/ do
-  select "All", from: "Sectors"
-  click_button "Publish"
-  @article.reload
-  @article.sectors.should include("All")
-end
-
 When /^I add an image to the body of an article$/ do
 
   # Add the new article under the news page

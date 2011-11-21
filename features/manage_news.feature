@@ -8,14 +8,6 @@ Feature: Manage news
     And I navigate to the 'News' branch
     Then I should be able to add Articles the News branch
 
-  Scenario: Assign Article to Sector
-    Given I am editing an Article
-    Then I should be able to choose a Sector that the article relates to
-
-  Scenario: Assign Article to all Sectors
-    Given I am editing an Article
-    Then I should assign the article as relevant to all Sectors
-
   @javascript
   Scenario: Assign an article to categories
     Given articles exist with categories assigned

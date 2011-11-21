@@ -4,7 +4,7 @@ Feature: Latest articles component
   will be able to place a list of latest articles within content
 
   Background:
-    Given there are many news articles assigned to Sectors, categories and Regions
+    Given there are many news articles assigned to Categories
 
   Scenario: Add Latest Article Component
     When I am editing content
