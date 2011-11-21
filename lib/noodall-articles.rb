@@ -1,4 +1,1 @@
-require "noodall-articles/engine"
-
-module NoodallArticles
-end
+require "noodall/articles/engine"

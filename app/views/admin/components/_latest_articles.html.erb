@@ -1,0 +1,25 @@
+<%= fields_for :node do |n| %>
+  <%= n.fields_for slot_name, component do |f| %>
+    <%= f.hidden_field :_type %>
+
+    <p>
+      <%= f.label :title %><br/>
+      <span class="input-wrap"><%= f.text_field :title %></span>
+    </p>
+
+    <p>
+      <%= f.label :category %><br/>
+      <span class="input-wrap"><%= f.select :category, component.categories, :include_blank => true %></span>
+    </p>
+
+    <p>
+      <%= f.label :sector %><br/>
+      <span class="input-wrap"><%= f.select :sector, component.sectors %></span>
+    </p>
+
+    <p>
+      <%= f.label :region %><br/>
+      <span class="input-wrap"><%= f.select :region, component.regions %></span>
+    </p>
+  <% end %>
+<% end %>

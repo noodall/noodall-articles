@@ -1,0 +1,35 @@
+<div class="main-content">
+  <div class="section-title">
+    <p><%= @node.root.title %></p>
+    <%= articles_rss_feed_link "RSS", :title => "RSS Feed", :class => "rss" %>
+  </div>
+    <%= paginated_articles do |articles| %>
+      <ul id="articles">
+        <% for article in articles %>
+          <li class="<%= 'has-image' unless article.asset.nil? %>" >
+           <% unless article.asset.nil? %>
+            <div class="article-image"><%= image_tag( article.asset.url('80x80#', article.asset.web_image_extension), :alt => article.asset.description.to_s ) %></div>
+            <% end %>
+            <div class="article-content">
+              <h2><%= link_to article.title, node_path(article) %></h2>
+              <p><%= truncate(article.description, :length => 140) %></p>
+              <p class="meta">
+                <% unless  article.regions.empty? %><span class="region"><%= article.regions %></span><% end %>
+                <span class="date"><%= l article.published_at, :format => :short_dot %></span>
+                <span class="cats">
+                  <% unless  article.categories.empty? %>
+                    <% for category in article.categories %>
+                      <%= link_to category, node_path(@node.list, :category => category) %>,
+                    <% end %>
+                  <% end %>
+                </span>
+              </p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% end -%>
+</div>
+<div class="supporting-content">
+  <%= render :partial => 'article_sidebar' %>
+</div>
