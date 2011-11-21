@@ -28,7 +28,7 @@
   <% @node.recent_articles({ categories: params[:category], sectors: params[:sector], regions: params[:region] }).each do |article| %>
     <li class="<%= cycle("first", "second", "third") %>">
       <%= link_to article.title, node_path(article), :class => "latest-link" %>
-      <time datetime="<%= l article.published_at, :format => :datetime %>" pubdate><%= l article.published_at, :format => :short %></time>
+      <time datetime="<%= article.published_at %>" pubdate><%= l article.published_at, :format => :short %></time>
     </li>
   <% end %>
   </ul>
