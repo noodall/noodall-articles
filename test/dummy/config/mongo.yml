@@ -1,0 +1,6 @@
+development:
+  database: noodall-articles_development
+test:
+  database: noodall-articles_test
+production:
+  database: noodall-articles_production
