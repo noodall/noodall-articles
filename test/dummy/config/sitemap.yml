@@ -2,5 +2,5 @@ home:
   title: Home
   type: Home
 news:
-  title: The News
+  title: News
   type: ArticleList
