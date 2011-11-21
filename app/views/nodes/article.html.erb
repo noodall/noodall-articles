@@ -8,7 +8,7 @@
     <%= @node.body.html_safe %>
   </div>
   <div class="meta">
-    <span class="date"><%= l @node.published_at, :format => :short_dot %></span>
+    <span class="date"><%= l @node.published_at, :format => :short %></span>
     <span class="cats">
       <% unless  @node.categories.empty? %>
         <% for category in @node.categories %>
