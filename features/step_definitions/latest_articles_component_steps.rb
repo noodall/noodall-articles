@@ -21,6 +21,6 @@ end
 
 Then /^I should be able to filter by a combination of any of the above$/ do
   visit node_path(@content)
-  page.should have_css("div.latest-articles h3", text: "Latest Articles")
-  page.should have_css('ol.latest-articles-list li')
+  assert page.has_css?("div.latest-articles h3", text: "Latest Articles")
+  assert page.has_css?('ol.latest-articles-list li')
 end

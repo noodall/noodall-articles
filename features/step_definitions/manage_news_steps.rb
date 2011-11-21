@@ -8,11 +8,11 @@ end
 
 Then /^I should be able to add Articles the News branch$/ do
   click_link "Add content under News"
-  page.should have_css("fieldset.template input[type='radio']", count: 1)
+  assert page.has_css?("fieldset.template input[type='radio']", count: 1)
   choose "Article"
   fill_in 'Title', with: "A brand new article"
   click_button "Create"
-  page.should have_content "Article 'A brand new article' was successfully created."
+  assert page.has_content? "Article 'A brand new article' was successfully created."
 end
 
 Given /^I am editing an Article$/ do
@@ -31,14 +31,14 @@ When /^I start typing in the categories field$/ do
 end
 
 Then /^I should see suggestions of existing categories I could assign to the article$/ do
-  page.should have_css(".ui-menu-item", count: 1)
+  assert page.has_css?(".ui-menu-item", count: 1)
 end
 
 Then /^I should be able to assign the article to multiple new or existing categories$/ do
   find("a.ui-corner-all").click # select the categories from the autocompleter
   click_button "Publish"
   @article.reload
-  @article.categories.should include("Stuff")
+  assert @article.categories.include?("Stuff")
 end
 
 When /^I add an image to the body of an article$/ do
@@ -56,5 +56,5 @@ end
 
 Then /^it should be used as the article thumbnail$/ do
   visit "/news"
-  page.should have_css("div.article-image img")
+  assert page.has_css?("div.article-image img")
 end
