@@ -14,7 +14,6 @@
               <h2><%= link_to article.title, node_path(article) %></h2>
               <p><%= truncate(article.description, :length => 140) %></p>
               <p class="meta">
-                <% unless  article.regions.empty? %><span class="region"><%= article.regions %></span><% end %>
                 <span class="date"><%= l article.published_at, :format => :short_dot %></span>
                 <span class="cats">
                   <% unless  article.categories.empty? %>

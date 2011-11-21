@@ -3,8 +3,6 @@ class LatestArticles < Noodall::Component
   key :title, String, :default => "Latest Articles"
 
   # Keys for filtering articles
-  key :sector, String
-  key :region, String
   key :category, String
 
   # Returns a filtered list of latest articles
@@ -13,8 +11,6 @@ class LatestArticles < Noodall::Component
 
     query = {
       categories: category,
-      sectors: sector,
-      regions: region,
       order: ['published_at DESC','created_at DESC']
     }
 
@@ -28,11 +24,4 @@ class LatestArticles < Noodall::Component
     ArticleList.new.all_categories
   end
 
-  def regions
-    ArticleList.new.all_regions
-  end
-
-  def sectors
-    ArticleList.new.all_sectors
-  end
 end

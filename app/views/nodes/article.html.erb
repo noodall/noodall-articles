@@ -6,15 +6,9 @@
   <h1><%= @node.title %></h1>
   <div class="article-body">
     <%= @node.body.html_safe %>
-    <%= component @node, 'large_slot_0' %>
-    <%= component @node, 'large_slot_1' %>
-    <%= component @node, 'large_slot_2' %>
   </div>
   <div class="meta">
     <span class="date"><%= l @node.published_at, :format => :short_dot %></span>
-    <% unless  @node.regions.empty? %><span class="region"><%= @node.regions %></span><% end %>
-    <% unless  @node.sectors.empty? %><span class="sector"><%= @node.sectors %></span><% end %>
-    
     <span class="cats">
       <% unless  @node.categories.empty? %>
         <% for category in @node.categories %>

@@ -1,0 +1,54 @@
+<!-- FILTER NEWS -->
+<div class="component filter">
+  <h3 class="sup-title">Find News...</h3>
+  <% if @node.all_categories.any? %>
+  <div class="filter-wrap category-list">
+     <h4>Category</h4>
+      <ul>
+        <% for category in @node.all_categories %>
+          <li><%= link_for_filter_text(category, @node.list, { :category => category }) %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<!-- RELATED ARTICLES -->
+
+<% if @node.is_a?(Article) %>
+  <div class="component related-articles">
+    <%= related_articles %>
+  </div>
+<% end %>
+
+<!-- RECENT ARTICLES -->
+<div class="component latest-articles">
+  <h3 class="sup-title">Recent Articles</h3>
+  <ul id="latest-article-list">
+  <% @node.recent_articles({ categories: params[:category], sectors: params[:sector], regions: params[:region] }).each do |article| %>
+    <li class="<%= cycle("first", "second", "third") %>">
+      <%= link_to article.title, node_path(article), :class => "latest-link" %>
+      <time datetime="<%= l article.published_at, :format => :datetime %>" pubdate><%= l article.published_at, :format => :short_dot %></time>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
+<!-- ARCHIVE -->
+<div class="component archive">
+  <h3 class="sup-title">Archive</h3>
+  <ul id="archive-list">
+    <% @node.archive.each do |year| %>
+      <li>
+        <%= link_to("#{year.year} <span>(#{year.total})</span>".html_safe, node_path(@node.list, :year => year.year )) %>
+        <% if (params[:year] || Time.now.year).to_i == year.year %>
+          <ul>
+            <% year.months.each_with_index do |count, month| %>
+              <%= content_tag(:li, link_to("#{t(:'date.month_names')[month+1]} <span>(#{count})</span>".html_safe, node_path(@node.list, :year => year.year, :month => month+1 ))) unless count.zero? -%>
+            <% end -%>
+          </ul>
+        <% end -%>
+      </li>
+    <% end -%>
+  </ul>
+</div>
