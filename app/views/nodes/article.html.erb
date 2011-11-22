@@ -1,7 +1,7 @@
 <div class="main-content">
   <div class="section-title">
-    <p><%= @node.root.title %></p>
-    <%= link_to "RSS Feed", "#", :class => "rss" %>
+    <p><%= @node.list.title %></p>
+    <%= articles_rss_feed_link "RSS", :title => "RSS Feed", :class => "rss" %>
   </div>
   <h1><%= @node.title %></h1>
   <div class="article-body">

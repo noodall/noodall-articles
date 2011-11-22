@@ -1,6 +1,6 @@
 <div class="main-content">
   <div class="section-title">
-    <p><%= @node.root.title %></p>
+    <p><%= @node.title %></p>
     <%= articles_rss_feed_link "RSS", :title => "RSS Feed", :class => "rss" %>
   </div>
     <%= paginated_articles do |articles| %>
