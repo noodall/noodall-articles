@@ -39,7 +39,7 @@ module ArticlesHelper
   def articles_rss_feed_link(text, options = {})
     querystring = build_querystring
     querystring[:format] = :rss
-    link_to text, node_path(@node, querystring), options
+    link_to text, node_path(@node.list, querystring), options
   end
 
   def related_articles
