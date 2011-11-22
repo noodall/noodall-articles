@@ -1,0 +1,5 @@
+Description:
+    Generates default article views
+
+Example:
+    rails generate noodall:articles:views
