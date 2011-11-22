@@ -15,6 +15,9 @@
               <p><%= truncate(article.description, :length => 140) %></p>
               <p class="meta">
                 <span class="date"><%= l article.published_at, :format => :short %></span>
+                <% if article.creator %>
+                  <span class="author"><%= link_for_filter_text(article.creator.full_name, @node.list, { :author => article.creator.permalink }) %></li>
+                <% end %>
                 <span class="cats">
                   <% unless  article.categories.empty? %>
                     <% for category in article.categories %>

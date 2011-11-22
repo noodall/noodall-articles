@@ -91,3 +91,26 @@ Then /^the RSS feed should reflect the Category$/ do
   click_link "RSS"
   assert page.has_css?("item", count: 3)
 end
+
+Given /^there are many news articles created by different authors$/ do
+  @news_page = ArticleList.find_by_permalink('news')
+  ['Dave Smiggins', 'Mr Spoon', 'Steve Dave'].each do |author|
+    user = Factory :user, full_name: author, groups: ['authors']
+    4.times do
+      Factory :article, parent: @news_page, creator: user, updater: user
+    end
+  end
+end
+
+Then /^I should see a list of Authors within the sidebar$/ do
+  assert page.has_css?("ul#authors-list li", count: 3)
+end
+
+Then /^when I choose a Author$/ do
+  click_link 'Dave Smiggins'
+end
+
+Then /^I should see only articles created by that author$/ do
+  assert page.has_css?("ul#articles li", count: 4)
+end
+

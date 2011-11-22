@@ -59,17 +59,27 @@ module ArticlesHelper
     link_to(text, node_path(node.list, querystring))
   end
 
+  def authors
+    User.where(groups: 'authors')
+  end
+
+  def author
+    User.first(permalink: params[:author]) if valid_filter?(params[:author])
+  end
+
   protected
 
   def build_query_from_params
     query = {}
     query[:categories] = params[:category] if valid_filter?(params[:category])
+    query[:creator_id] = author._id unless author.nil?
     query
   end
 
   def build_querystring(current_filter = {})
     querystring = {
       category: params[:category],
+      author: params[:author],
     }
     querystring.merge!(current_filter)
   end

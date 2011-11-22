@@ -5,6 +5,7 @@ class User
   key :email, String
   key :full_name, String
   key :groups, Array
+  key :permalink, String
 
   cattr_accessor :editor_groups
 
@@ -15,6 +16,11 @@ class User
   def editor?
     return true if self.class.editor_groups.blank?
     admin? or (self.class.editor_groups & groups).size > 0
+  end
+
+  before_save :set_permalink
+  def set_permalink
+    self.permalink = full_name.parameterize
   end
 
 end

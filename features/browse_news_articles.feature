@@ -21,6 +21,13 @@ Feature: Browse News articles
     And when I choose a Category
     Then I should see only articles assigned to the Category
 
+  Scenario: Filter by Author
+    Given there are many news articles created by different authors
+    When I go to the News section of the website
+    Then I should see a list of Authors within the sidebar
+    And when I choose a Author
+    Then I should see only articles created by that author
+
   Scenario: Recent articles
     Given there are many news articles assigned to Categories
     When I go to the News section of the website

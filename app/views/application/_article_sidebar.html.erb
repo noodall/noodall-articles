@@ -13,6 +13,17 @@
   <% end %>
 </div>
 
+<% if authors.any? %>
+  <div class="component auhtors">
+  <h3 class="sup-title">Authors</h3>
+  <ul id="authors-list">
+    <% authors.each do |author| %>
+      <li><%= link_for_filter_text(author.full_name, @node.list, { :author => author.permalink }) %></li>
+    <% end %>
+  </ul>
+  </div>
+<% end %>
+
 <!-- RELATED ARTICLES -->
 
 <% if @node.is_a?(Article) %>
