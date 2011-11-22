@@ -25,4 +25,8 @@ class ArticleList < Noodall::Node
     super(children.published.criteria.to_hash)
   end
 
+  def archive
+    super(children.published.criteria.to_hash)
+  end
+
 end

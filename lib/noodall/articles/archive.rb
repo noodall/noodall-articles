@@ -1,8 +1,8 @@
 module Noodall
   module Articles
     module Archive
-      def archive
-        result = self.collection.map_reduce(archive_map, archive_reduce, {:finalize => archive_finalize, :out => "tmp_archives"})
+      def archive(query = {})
+        result = self.collection.map_reduce(archive_map, archive_reduce, {:query => query, :finalize => archive_finalize, :out => "tmp_archives"})
         years = result.find.to_a.map{ |hash| Year.new(hash['_id'],hash['value']) }.sort{ |a,b| b.year <=> a.year }
         years
       end
