@@ -50,6 +50,7 @@ Then /^I should see a list of Categories within the sidebar$/ do
 end
 
 Then /^when I choose a Category$/ do
+  visit node_path(@news_page)
   click_link "Things"
 end
 
@@ -58,7 +59,11 @@ Then /^I should see only articles assigned to the Category$/ do
 end
 
 Then /^I should see the (\d+) most recent articles in the sidebar$/ do |number_of_articles|
-  assert page.has_css?("ol#latest-article-list li a", count: number_of_articles)
+  assert page.has_css?("ul#latest-article-list li a", count: number_of_articles)
+end
+
+Then /^the recent articles should reflect the Category$/ do
+  assert page.has_css?("ul#articles li", count: 3)
 end
 
 When /^I view an article$/ do
@@ -79,10 +84,10 @@ end
 Then /^I should be able to subscribe to an RSS feed$/ do
   visit "/news"
   click_link "RSS"
-  assert page.has_css?("item", count: 4)
+  assert page.has_css?("item", count: 12)
 end
 
-Then /^the RSS feed should reflect the filters$/ do
+Then /^the RSS feed should reflect the Category$/ do
   click_link "RSS"
-  assert page.has_css?("item", count: 1)
+  assert page.has_css?("item", count: 3)
 end

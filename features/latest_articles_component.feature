@@ -6,13 +6,14 @@ Feature: Latest articles component
   Background:
     Given there are many news articles assigned to Categories
 
-  Scenario: Add Latest Article Component
-    When I am editing content
-    Then I should be able to add a "Latest Articles" component
+  #@wip
+  #Scenario: Add Latest Article Component
+    #When I am editing content
+    #Then I should be able to add a "Latest Articles" component
 
-  @javascript
-  Scenario: Filter the articles that appear
-    When I am editing a "Latest Articles" component
-    Then I should be able to filter the articles that appear in the component by sector, region or category
-    And I should be able to filter by a combination of any of the above
+  #@wip @javascript
+  #Scenario: Filter the articles that appear
+    #When I am editing a "Latest Articles" component
+    #Then I should be able to filter the articles that appear in the component by sector, region or category
+    #And I should be able to filter by a combination of any of the above
 

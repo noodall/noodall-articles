@@ -4,7 +4,7 @@
   <% if @node.all_categories.any? %>
   <div class="filter-wrap category-list">
      <h4>Category</h4>
-      <ul>
+      <ul id="categories-list">
         <% for category in @node.all_categories %>
           <li><%= link_for_filter_text(category, @node.list, { :category => category }) %></li>
         <% end %>
