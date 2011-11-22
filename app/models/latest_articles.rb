@@ -4,11 +4,12 @@ class LatestArticles < Noodall::Component
 
   # Keys for filtering articles
   key :category, String
+  key :article_list_id, ObjectId
+  belongs_to :article_list
 
   # Returns a filtered list of latest articles
   def articles
-    news_page = ArticleList.find_by_permalink("news")
-
+    return [] if article_list.nil?
     query = {
       categories: category,
       order: ['published_at DESC','created_at DESC']
@@ -17,11 +18,11 @@ class LatestArticles < Noodall::Component
     # Remove any filters that are set to "All"
     query.reject! {|key, value| value == "All" || value.blank? }
 
-    news_page.children.published.limit(3).all(query)
+    article_list.children.published.limit(3).all(query)
   end
 
   def categories
-    ArticleList.new.all_categories
+    Article.all_categories
   end
 
 end

@@ -8,18 +8,14 @@
     </p>
 
     <p>
+      <%= f.label :article_list_id %><br/>
+      <span class="input-wrap"><%= f.collection_select :article_list_id, ArticleList.published.all, :id, :name, :prompt => 'Choose an Article List' %></span>
+    </p>
+
+    <p>
       <%= f.label :category %><br/>
       <span class="input-wrap"><%= f.select :category, component.categories, :include_blank => true %></span>
     </p>
 
-    <p>
-      <%= f.label :sector %><br/>
-      <span class="input-wrap"><%= f.select :sector, component.sectors %></span>
-    </p>
-
-    <p>
-      <%= f.label :region %><br/>
-      <span class="input-wrap"><%= f.select :region, component.regions %></span>
-    </p>
   <% end %>
 <% end %>

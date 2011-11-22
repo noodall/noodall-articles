@@ -1,0 +1,14 @@
+<div id="<%= slot_code %>" class="component latest-articles <%= 'double' if expand %> <%= additional_classes %>">
+  <h3 class="sup-title"><%=h component.title %></h3>
+  <ul id="latest-articles">
+    <% for article in component.articles %>
+      <li class="<%= cycle("first", "second", "third") %>">
+        <a href="<%= node_path(article) %>" title="<%= article.title %>">
+          <span class="article-title"><%= article.title %></span>
+        </a>
+        <time datetime="<%= article.published_at %>" pubdate><%= l article.published_at, :format => :short %></time>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to 'All Articles', "/news", :class => 'more' %>
+</div>
