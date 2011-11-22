@@ -13,9 +13,11 @@ module Noodall
       def category_map
         <<-JS
           function(){
-            this.categories.forEach(function(category){
-              emit(category, 1);
-            });
+            if (this.categories) {
+              this.categories.forEach(function(category){
+                emit(category, 1);
+              });
+            }
           }
         JS
       end

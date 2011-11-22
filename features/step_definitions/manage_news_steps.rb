@@ -27,7 +27,7 @@ Given /^articles exist with categories assigned$/ do
 end
 
 When /^I start typing in the categories field$/ do
-  fill_in "Categories", with: "st"
+  fill_in "Categories", with: "St"
 end
 
 Then /^I should see suggestions of existing categories I could assign to the article$/ do

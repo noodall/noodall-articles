@@ -3,7 +3,7 @@
   <span class="input-wrap"><%= f.text_field :category_list, :class => "categories-completer" %></span>
 </p>
 
-<%= javascript_include_tag('admin/categories') %>
+<%= javascript_include_tag('noodall-articles/categories') %>
 
 <%= render :partial => 'noodall/admin/nodes/body', :locals => { :f => f }  %>
 <% content_for :component_table do %>

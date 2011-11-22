@@ -34,7 +34,6 @@ Feature: Browse News articles
     Then I should see Articles related to the one I am viewing in the sidebar
     And the relation should be based on keywords
 
-  @wip
   Scenario: RSS Feed
     Given there are many news articles assigned to Categories
     Then I should be able to subscribe to an RSS feed

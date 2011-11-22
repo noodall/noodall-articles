@@ -8,6 +8,7 @@ gemspec
 
 # jquery-rails is used by the dummy application
 gem "jquery-rails"
+gem "mm-versionable", '0.2.5'
 gem "noodall-ui"
 gem 'bson_ext'
 gem "dragonfly"

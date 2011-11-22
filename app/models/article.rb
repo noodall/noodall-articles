@@ -1,4 +1,7 @@
+require 'noodall/articles/categories'
+
 class Article < Noodall::Node
+  extend Noodall::Articles::Categories
 
   delegate :list, :all_categories, :recent_articles, :archive, :to => :parent
 
