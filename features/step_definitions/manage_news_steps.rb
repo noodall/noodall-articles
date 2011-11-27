@@ -7,12 +7,21 @@ Given /^I navigate to the 'News' branch$/ do
 end
 
 Then /^I should be able to add Articles the News branch$/ do
+  # Create another article so that the default
+  # position for future articles is NOT zero
+  news_page = ArticleList.find_by_permalink("news")
+  Factory :article, position: 0, parent: news_page
+
   click_link "Add content under News"
   assert page.has_css?("fieldset.template input[type='radio']", count: 1)
   choose "Article"
   fill_in 'Title', with: "A brand new article"
   click_button "Create"
   assert page.has_content? "Article 'A brand new article' was successfully created."
+end
+
+Then /^the new article should be added to the top of the list$/ do
+  assert_equal Article.find_by_title("A brand new article").position, 0
 end
 
 Given /^I am editing an Article$/ do

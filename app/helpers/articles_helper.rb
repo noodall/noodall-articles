@@ -37,9 +37,17 @@ module ArticlesHelper
   end
 
   def articles_rss_feed_link(text, options = {})
+    link_to(text, articles_rss_feed_url, options)
+  end
+
+  def articles_rss_feed_url
     querystring = build_querystring
     querystring[:format] = :rss
-    link_to text, node_path(@node.list, querystring), options
+    node_path(@node.list, querystring)
+  end
+
+  def articles_rss_feed_auto_discovery
+    auto_discovery_link_tag(:rss, articles_rss_feed_url, :title => "Articles RSS Feed")
   end
 
   def related_articles
@@ -56,7 +64,29 @@ module ArticlesHelper
 
   def link_for_filter_text(text, node, current_filter)
     querystring = build_querystring(current_filter)
-    link_to(text, node_path(node.list, querystring))
+    content_tag(:li) do
+      link_to(text, node_path(node.list, querystring))
+    end
+  end
+
+  def link_for_year_filter(node, year)
+    querystring = build_querystring(:year => year.year)
+    link_to("#{year.year} <span>(#{year.total})</span>".html_safe, node_path(node.list, querystring))
+  end
+
+  def link_for_month_filter(node, year, month, count)
+    querystring = build_querystring(:year => year.year, :month => month + 1)
+    content_tag(:li,
+      link_to("#{t(:'date.month_names')[month+1]} <span>(#{count})</span>".html_safe, node_path(node.list, querystring))
+    ) unless count.zero?
+  end
+
+  def selected_filter(filter)
+    params[filter.downcase] || filter
+  end
+
+  def article_region(node)
+    node.regions.blank? ? "All Regions" : node.regions
   end
 
   def authors
@@ -80,6 +110,8 @@ module ArticlesHelper
     querystring = {
       category: params[:category],
       author: params[:author],
+      year: params[:year],
+      month: params[:month]
     }
     querystring.merge!(current_filter)
   end

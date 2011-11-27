@@ -14,6 +14,13 @@ Feature: Browse News articles
     Then should see an archive list in the sidebar
     And I should be able use it to view articles to by specific month or year
 
+  Scenario: Archive with filters
+    Given there are many news articles that have been created over the last few years
+    When I go to the News section of the website
+    Then should see an archive list in the sidebar
+    And when I choose a Category
+    Then it only show years and months for which there are articles
+
   Scenario: Filters for category
     Given there are many news articles assigned to Categories
     When I go to the News section of the website

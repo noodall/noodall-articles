@@ -6,7 +6,7 @@
      <h4>Category</h4>
       <ul id="categories-list">
         <% for category in @node.all_categories %>
-          <li><%= link_for_filter_text(category, @node.list, { :category => category }) %></li>
+          <%= link_for_filter_text(category, @node, category: category) %>
         <% end %>
       </ul>
     </div>
@@ -14,11 +14,11 @@
 </div>
 
 <% if authors.any? %>
-  <div class="component auhtors">
+  <div class="component authors">
   <h3 class="sup-title">Authors</h3>
   <ul id="authors-list">
     <% authors.each do |author| %>
-      <li><%= link_for_filter_text(author.full_name, @node.list, { :author => author.permalink }) %></li>
+      <%= link_for_filter_text(author.full_name, @node.list, { :author => author.permalink }) %>
     <% end %>
   </ul>
   </div>
@@ -36,7 +36,7 @@
 <div class="component latest-articles">
   <h3 class="sup-title">Recent Articles</h3>
   <ul id="latest-article-list">
-  <% @node.recent_articles({ categories: params[:category], sectors: params[:sector], regions: params[:region] }).each do |article| %>
+  <% @node.recent_articles(categories: params[:category], sectors: params[:sector], regions: params[:region]).each do |article| %>
     <li class="<%= cycle("first", "second", "third") %>">
       <%= link_to article.title, node_path(article), :class => "latest-link" %>
       <time datetime="<%= article.published_at %>" pubdate><%= l article.published_at, :format => :short %></time>
@@ -49,13 +49,13 @@
 <div class="component archive">
   <h3 class="sup-title">Archive</h3>
   <ul id="archive-list">
-    <% @node.archive.each do |year| %>
+    <% @node.archive(categories: params[:category]).each do |year| %>
       <li>
-        <%= link_to("#{year.year} <span>(#{year.total})</span>".html_safe, node_path(@node.list, :year => year.year )) %>
+        <%= link_for_year_filter(@node, year) %>
         <% if (params[:year] || Time.now.year).to_i == year.year %>
           <ul>
             <% year.months.each_with_index do |count, month| %>
-              <%= content_tag(:li, link_to("#{t(:'date.month_names')[month+1]} <span>(#{count})</span>".html_safe, node_path(@node.list, :year => year.year, :month => month+1 ))) unless count.zero? -%>
+              <%= link_for_month_filter(@node, year, month, count) %>
             <% end -%>
           </ul>
         <% end -%>

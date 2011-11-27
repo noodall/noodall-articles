@@ -18,6 +18,13 @@ class Article < Noodall::Node
     categories.join(',')
   end
 
+  private
+
+  # Always put a new article at the top of a list
+  def set_position
+    write_attribute :position, 0 if self.position.blank?
+  end
+
   # Parses body to find first image asset
   def set_asset
 

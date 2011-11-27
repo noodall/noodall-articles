@@ -1,6 +1,9 @@
 <p>
+  <span class="tooltip" title="Enter a comma separated list of categories (e.g: one, two, three)">&nbsp;</span>
   <%= f.label :category_list, 'Categories' %><br/>
-  <span class="input-wrap"><%= f.text_field :category_list, :class => "categories-completer" %></span>
+  <span class="input-wrap">
+    <%= f.text_field :category_list, :class => "categories-completer" %><br/>
+  </span>
 </p>
 
 <%= javascript_include_tag('noodall-articles/categories') %>

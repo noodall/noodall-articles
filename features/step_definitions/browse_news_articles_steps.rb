@@ -16,9 +16,16 @@ end
 
 Given /^there are many news articles that have been created over the last few years$/ do
   @news_page = ArticleList.find_by_permalink('news')
-  ["2010-10-23", "2010-10-23", "2009-9-3", "2008-1-13"].each do |date|
-    Factory :article, parent: @news_page, published_at: date
+  %w{Stuff Wotsits}.each do |cat|
+    ["2010-10-23", "2010-10-23", "2009-9-3", "2009-1-13"].each do |date|
+      Factory :article, parent: @news_page, published_at: date, categories: cat
+    end
   end
+  Factory :article, parent: @news_page, published_at: '2008-1-13', categories: 'Things'
+end
+
+Then /^it only show years and months for which there are articles$/ do
+  assert page.has_css?("ul#archive-list a", count: 1, text: "2008")
 end
 
 Then /^should see an archive list in the sidebar$/ do
@@ -29,11 +36,11 @@ Then /^I should be able use it to view articles to by specific month or year$/ d
 
   # Year
   visit node_path(@news_page, year: "2010")
-  assert page.has_css?("ul#articles li", count: 2)
+  assert page.has_css?("ul#articles li", count: 4)
 
   # Year and month
   visit node_path(@news_page, year: "2009", month: "9")
-  assert page.has_css?("ul#articles li", count: 1)
+  assert page.has_css?("ul#articles li", count: 2)
 end
 
 Given /^there are many news articles assigned to Categories$/ do
