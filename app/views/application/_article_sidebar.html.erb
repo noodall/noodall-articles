@@ -36,7 +36,7 @@
 <div class="component latest-articles">
   <h3 class="sup-title">Recent Articles</h3>
   <ul id="latest-article-list">
-  <% @node.recent_articles(categories: params[:category], sectors: params[:sector], regions: params[:region]).each do |article| %>
+  <% @node.recent_articles(categories: params[:category], creator_id: ( author.id if author )).each do |article| %>
     <li class="<%= cycle("first", "second", "third") %>">
       <%= link_to article.title, node_path(article), :class => "latest-link" %>
       <time datetime="<%= article.published_at %>" pubdate><%= l article.published_at, :format => :short %></time>
