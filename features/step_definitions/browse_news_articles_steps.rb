@@ -121,3 +121,18 @@ Then /^I should see only articles created by that author$/ do
   assert page.has_css?("ul#articles li", count: 4)
 end
 
+Then /^I should be able to navigate through the individual articles$/ do
+  click_link 'Next'
+  within '.main-content h1' do
+    assert page.has_content?(@news_page.articles.all[2].title)
+  end
+  click_link 'Previous'
+  within '.main-content h1' do
+    assert page.has_content?(@news_page.articles.all[1].title)
+  end
+  3.times { click_link 'Next' }
+  within '.main-content h1' do
+    assert page.has_content?(@news_page.articles.all[4].title)
+  end
+end
+

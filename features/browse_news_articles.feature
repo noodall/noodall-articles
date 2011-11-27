@@ -1,7 +1,7 @@
 Feature: Browse News articles
   In order to find the news articles they are interested in
   a website visitor
-  will be able to browse and filter articles by region, sector, category and date
+  will be able to browse and filter articles by category, author and date
 
   Scenario: Browse all articles
     Given there are many news articles
@@ -53,3 +53,8 @@ Feature: Browse News articles
     Then I should be able to subscribe to an RSS feed
     And when I choose a Category
     Then the RSS feed should reflect the Category
+
+  Scenario: Article Pagination
+    Given there are many news articles
+    When I view an article
+    Then I should be able to navigate through the individual articles

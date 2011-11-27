@@ -62,6 +62,22 @@ module ArticlesHelper
     end
   end
 
+  def link_to_next_article(label = 'Next')
+    if next_article = @node.articles.where(:position.gt => @node.position).first
+      link_to label, node_path(next_article), class: 'next_page'
+    else
+      content_tag :span, label, class: 'next_page disabled'
+    end
+  end
+
+  def link_to_previous_article(label = 'Previous')
+    if previous_article = @node.articles.where(:position.lt => @node.position).order('position DESC').first
+      link_to label, node_path(previous_article), class: 'previous_page'
+    else
+      content_tag :span, label, class: 'previous_page disabled'
+    end
+  end
+
   def link_for_filter_text(text, node, current_filter)
     querystring = build_querystring(current_filter)
     content_tag(:li) do
