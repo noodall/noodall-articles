@@ -10,7 +10,8 @@
   <div class="meta">
     <span class="date"><%= l @node.published_at, :format => :short %></span>
     <% if @node.creator %>
-      <span class="author"><%= link_for_filter_text(@node.creator.full_name, @node.list, { :author => @node.creator.permalink }) %></li>
+
+      <span class="author"><%= link_to(@node.creator.full_name, node_path(@node.list, { :author => @node.creator.permalink })) %></li>
     <% end %>
     <span class="cats">
       <% unless  @node.categories.empty? %>
