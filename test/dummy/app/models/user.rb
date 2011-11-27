@@ -1,11 +1,16 @@
 class User
   include MongoMapper::Document
   include Canable::Cans
+  plugin Noodall::Tagging
 
+  key :name, String
+  key :permalink, String, :index => true
   key :email, String
-  key :full_name, String
-  key :groups, Array
-  key :permalink, String
+
+  alias_method :groups=, :tags=
+  alias_method :groups, :tags
+  alias_method :group_list=, :tag_list=
+  alias_method :group_list, :tag_list
 
   cattr_accessor :editor_groups
 

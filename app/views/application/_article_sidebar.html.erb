@@ -49,7 +49,7 @@
 <div class="component archive">
   <h3 class="sup-title">Archive</h3>
   <ul id="archive-list">
-    <% @node.archive(categories: params[:category]).each do |year| %>
+    <% @node.archive(categories: params[:category], creator_id: ( author.id if author )).each do |year| %>
       <li>
         <%= link_for_year_filter(@node, year) %>
         <% if (params[:year] || Time.now.year).to_i == year.year %>

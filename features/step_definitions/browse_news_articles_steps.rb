@@ -21,7 +21,7 @@ Given /^there are many news articles that have been created over the last few ye
       Factory :article, parent: @news_page, published_at: date, categories: cat
     end
   end
-  Factory :article, parent: @news_page, published_at: '2008-1-13', categories: 'Things'
+  Factory :article, parent: @news_page, published_at: '2008-1-13', categories: 'Things', creator: Factory(:user, full_name: 'Dave Smiggins')
 end
 
 Then /^it only show years and months for which there are articles$/ do

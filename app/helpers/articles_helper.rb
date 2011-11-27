@@ -106,7 +106,7 @@ module ArticlesHelper
   end
 
   def authors
-    User.where(groups: 'authors')
+    User.where(tags: 'authors')
   end
 
   def author
