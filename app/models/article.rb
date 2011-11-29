@@ -18,6 +18,13 @@ class Article < Noodall::Node
     categories.join(',')
   end
 
+  protected
+
+  # A slug for creating the permalink with date
+  def slug
+    (published_at || current_time).strftime('%Y/%m/%d/') + super
+  end
+
   private
 
   # Always put a new article at the top of a list
