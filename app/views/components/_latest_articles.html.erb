@@ -1,3 +1,5 @@
+<% unless component.article_list.nil? %>
+
 <div id="<%= slot_code %>" class="component latest-articles <%= 'double' if expand %> <%= additional_classes %>">
   <h3 class="sup-title"><%=h component.title %></h3>
   <ul id="latest-articles">
@@ -12,3 +14,5 @@
   </ul>
   <%= link_to 'All Articles', "/news", :class => 'more' %>
 </div>
+
+<% end %>
