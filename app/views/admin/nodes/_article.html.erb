@@ -1,14 +1,13 @@
-<p>
-  <span class="tooltip" title="Enter a comma separated list of categories (e.g: one, two, three)">&nbsp;</span>
-  <%= f.label :category_list, 'Categories' %><br/>
-  <span class="input-wrap">
-    <%= f.text_field :category_list, :class => "categories-completer" %><br/>
-  </span>
-</p>
+<div class="control-group">
+  <%= f.label :category_list, 'Categories', :class => "control-label" %>
+  <i class="icon-info-sign pull-right icon-large help" title="Categories" data-content="Enter a comma separated list of categories (e.g: one, two, three)"></i>
+  <div class="controls"><%= f.text_field :category_list, :class => "categories-completer psan6" %></div>
+</div>
 
 <%= javascript_include_tag('noodall-articles/categories') %>
 
 <%= render :partial => 'noodall/admin/nodes/body', :locals => { :f => f }  %>
+
 <% content_for :component_table do %>
 <!--
   modify this table to look like your template and link slots to correct anchors
