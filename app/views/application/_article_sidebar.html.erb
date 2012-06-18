@@ -25,11 +25,20 @@
 <% end %>
 
 <!-- RELATED ARTICLES -->
-
 <% if @node.is_a?(Article) %>
-  <div class="component related-articles">
-    <%= related_articles %>
-  </div>
+  <% unless @node.related_articles.empty? %>
+    <div class="component related-articles">
+      <h3 class="sup-title">Related Articles</h3>
+      <ul id="related-articles">
+      <% @node.related_articles.each do |article| %>
+        <li class="<%= cycle("first", "second", "third") %>">
+          <%= link_to article.title, node_path(article), :class => "latest-link" %>
+          <time datetime="<%= article.published_at %>" pubdate><%= l article.published_at, :format => :short %></time>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 <% end %>
 
 <!-- RECENT ARTICLES -->
