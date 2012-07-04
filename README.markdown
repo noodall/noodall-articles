@@ -18,7 +18,9 @@ Noodall Articles adds an `Article` and `ArticleList` Node to Noodall.
 
 `ArticleList` is the classic blog listing page. `Article` is an individual blog post.
 
-Add the ArticleList as a root template
+In `config/initializer/noodall.rb`
+
+Add the `ArticleList` as a root template
 
     Noodall::Node.root_templates ArticleList, ContentPage
 
