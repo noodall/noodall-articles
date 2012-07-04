@@ -18,6 +18,16 @@ class Article < Noodall::Node
     categories.join(',')
   end
 
+  def related_articles
+    @related_articles ||= begin
+      siblings
+        .published
+        .order('published_date DESC')
+        .where(:tags => /(#{tags.join('|')})/i)
+        .limit(3)
+    end
+  end
+
   protected
 
   # A slug for creating the permalink with date

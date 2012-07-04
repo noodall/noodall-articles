@@ -50,18 +50,6 @@ module ArticlesHelper
     auto_discovery_link_tag(:rss, articles_rss_feed_url, :title => "Articles RSS Feed")
   end
 
-  def related_articles
-    nodes = @node.siblings.published.order('published_date DESC').where(:tags => /(#{@node.tags.join('|')})/i).limit(3)
-
-    return if nodes.empty?
-
-    content_tag('h3', 'Related Articles', :class => "sup-title") + content_tag('ul', :id => 'related-articles') do
-      nodes.collect do |node|
-        content_tag('li', link_to((node.title).html_safe, node_path(node))+content_tag('time', l(node.published_at, :format => :short)))
-      end.join.html_safe
-    end
-  end
-
   def link_to_next_article(label = 'Next')
     if next_article = @node.articles.where(:position.gt => @node.position).first
       link_to label, node_path(next_article), class: 'next_page'

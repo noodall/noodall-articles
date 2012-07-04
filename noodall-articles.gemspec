@@ -7,13 +7,13 @@ require "noodall/articles/version"
 Gem::Specification.new do |s|
   s.name        = "noodall-articles"
   s.version     = Noodall::Articles::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of NoodallArticles."
-  s.description = "TODO: Description of NoodallArticles."
+  s.authors     = ["Steve England"]
+  s.email       = ["steve@wearebeef.co.uk"]
+  s.homepage    = "https://github.com/noodall/noodall-articles"
+  s.summary     = "Simple blog like functionality for Noodall"
+  s.description = "Simple blog like functionality for Noodall"
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.1.3"
