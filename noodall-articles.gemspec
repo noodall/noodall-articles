@@ -10,10 +10,10 @@ Gem::Specification.new do |s|
   s.authors     = ["Steve England"]
   s.email       = ["steve@wearebeef.co.uk"]
   s.homepage    = "https://github.com/noodall/noodall-articles"
-  s.summary     = "Adds simple blog like functionality to Noodall"
-  s.description = "Adds simple blog like functionality to Noodall"
+  s.summary     = "Simple blog like functionality for Noodall"
+  s.description = "Simple blog like functionality for Noodall"
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.1.3"
