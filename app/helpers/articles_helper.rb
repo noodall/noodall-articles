@@ -94,7 +94,7 @@ module ArticlesHelper
   end
 
   def authors
-    User.where(tags: 'authors')
+    User.where(tags: 'authors').all
   end
 
   def author
